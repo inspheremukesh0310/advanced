@@ -13,5 +13,7 @@
                 $data= Yii::$app->db->createCommand('select * from user')->queryAll();
                 return $data;
             }
+
+            
         }
 ?>

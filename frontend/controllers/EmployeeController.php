@@ -3,18 +3,38 @@
 namespace frontend\controllers;
 use frontend\models\Employee_search;
 use frontend\models\Employees;
+use frontend\models\Stateslist;
 use yii\web\UploadedFile;
 use yii\helpers\Url;
+use frontend\components\EmployeeModuleBehavior;
 
 use Yii;
 
 
 class EmployeeController extends \yii\web\Controller
 {
+    public function behaviors()
+    {
+        $session = Yii::$app->session;
+       
+        return [
+            'empmodulbehavior'=>[
+                'class'=>EmployeeModuleBehavior::className(),
+                'username'=>(isset($_SESSION['user_name']) && $_SESSION['user_name']!='')?$_SESSION['user_name']:'',
+                'userid'=>(isset($_SESSION['user_id']) && $_SESSION['user_id']!='')?$_SESSION['user_id']:'',
+            ]
+        ];
+      
+    }
     public function actionIndex()
     {
-        $employeedata=Employees::find()->All();
-        return $this->render('index', ['employeedata' => $employeedata,]);
+        if (isset($_SESSION['user_id']) && $_SESSION['user_id']!=null) {
+            $employeedata=Employees::find()->All();
+            $stetes=Stateslist::find()->All();
+            return $this->render('index', ['employeedata' => $employeedata,]);
+        }else {
+            return $this->redirect(Yii::$app->homeUrl.'/site');
+        }
     }
     public function actionDeleteEmployee($id)
     {
@@ -113,6 +133,7 @@ class EmployeeController extends \yii\web\Controller
     public function actionEmpadd()
     {
         $model = new \frontend\models\employees();
+        $stetes=Stateslist::find()->All();
         $post=Yii::$app->request->post();
         if (!empty($post) && $model->load($post)) {
          
@@ -135,7 +156,7 @@ class EmployeeController extends \yii\web\Controller
                 Yii::$app->session->setFlash('error', 'Data Not Valiated');
             }
         }
-        return $this->render('empadd', ['model' => $model,]);
+        return $this->render('empadd', ['model' => $model,'stateslist'=> $stetes]);
     }
 
 }

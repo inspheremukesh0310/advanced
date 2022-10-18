@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use frontend\components\CommonComponent;
 
 
 
@@ -21,7 +22,14 @@ use yii\widgets\ActiveForm;
         <?php //echo $form->field($model, 'dob') ?>
         <?php //echo $form->field($model, 'address')->textarea(['rows' => 4]) ?>
         <div class="card mt-3">
-            <div class="card-header bg-info">Add Employee</div>
+            <div class="card-header bg-info">
+                <div class="row">
+                    <div class="col-md-11"><label for="">Add Employee</label></div> 
+                    <div class="col-md-1">
+                        <a href="<?=Yii::$app->request->baseUrl.'/employee'?>" class="btn btn-danger">Back</a>
+                    </div>
+                </div>
+            </div>
             <div class="card-body">
             <div class="row mt-2">
             <div class="col-md-6">
@@ -74,7 +82,37 @@ use yii\widgets\ActiveForm;
         <div class="row mt-2">
             <div class="col-md-12">
                 <label for="address"><strong>Address</strong></label>
-                <textarea name="Employees[address]" id="address" cols="30" rows="4" class="form-control"></textarea>
+                <textarea name="Employees[address]" id="address" cols="30" rows="3" class="form-control"></textarea>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-4">
+                <label for="address"><strong>State</strong></label>
+                <select name="" id="" class="form-control">
+                    <option value="">Select State</option>
+                    <?php
+                        foreach ($stateslist as $states) {
+                            ?>
+                                <option value="<?=$states->id?>"><?=$states->states_name?></option>
+                            <?php
+                        }
+                    ?>
+                </select>
+                
+            </div>
+            <div class="col-md-4">
+                <label for="address"><strong>Distric</strong></label>
+                <select name="" id="" class="form-control">
+                    <option value="">Select Distric</option>
+                </select>
+               
+            </div>
+            <div class="col-md-4">
+                <label for="address"><strong>Pin Code</strong></label>
+                <select name="" id="" class="form-control">
+                    <option value="">Select Pin Code</option>
+                </select>
+               
             </div>
         </div>
         <div class="row mt-2">

@@ -14,7 +14,9 @@ use Yii;
  * @property int $gender
  * @property int $maritalstatus
  * @property string $dob
+ * @property string $empimg
  * @property string $address
+ * @property int $state
  * @property int $status
  */
 class Employees extends \yii\db\ActiveRecord
@@ -33,14 +35,13 @@ class Employees extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name','phone','gender','address','maritalstatus'], 'required'],
+            [['name', 'email', 'phone', 'gender', 'maritalstatus', 'dob', 'empimg', 'address', 'state'], 'required'],
             [['phone'], 'number'],
-            [['gender', 'maritalstatus', 'status'], 'integer'],
+            [['gender', 'maritalstatus', 'state', 'status'], 'integer'],
             [['dob'], 'safe'],
             [['address'], 'string'],
             [['name', 'email'], 'string', 'max' => 50],
-            
-            [['empimg'], 'file', 'skipOnEmpty' => true, 'extensions' => ['png', 'jpg', 'gif'], 'maxSize' => 1024 * 1024 * 1024],
+            [['empimg'], 'string', 'max' => 75],
         ];
     }
 
@@ -55,11 +56,12 @@ class Employees extends \yii\db\ActiveRecord
             'email' => 'Email',
             'phone' => 'Phone',
             'gender' => 'Gender',
-            'maritalstatus' => 'Marital Status',
-            'dob' => 'Date of Birth',
+            'maritalstatus' => 'Maritalstatus',
+            'dob' => 'Dob',
+            'empimg' => 'Empimg',
             'address' => 'Address',
+            'state' => 'State',
             'status' => 'Status',
-            'empimg' => 'Employee Image',
         ];
     }
 }

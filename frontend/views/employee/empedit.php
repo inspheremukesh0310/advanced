@@ -38,7 +38,7 @@ use yii\helpers\Url;
                     </div>
                 </div>
                 <div class="row mt-2">
-                    <div class="col-md-6">
+                    <div class="col-md-6"> 
                         
                         <?php echo $form->field($employeedata, 'email')->textInput(['autofocus' => true,'type'=>'email']) ?>
                     </div>
