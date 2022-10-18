@@ -76,7 +76,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                         echo "NA";
                                     }
                                 ?>
-                            </td>
+                            </td> 
                             <td style="width:25%;text-align:center">
                                 <a href="<?='/employee/edit-employee?id='.$empdetails->id?>" class="btn btn-success btn-sm">Edit</a>
                                 <a href="<?='/employee/delete-employee?id='.$empdetails->id?>" class="btn btn-danger btn-sm">Delete</a>

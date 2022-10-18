@@ -10,7 +10,7 @@ use yii\helpers\Url;
 ?>
 <div class="empadd"> 
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => ['autocomplete' => 'off']]); ?>
         <?php //echo $form->field($model, 'id')->hiddenInput() ?>
         
         
@@ -40,14 +40,14 @@ use yii\helpers\Url;
                 <div class="row mt-2">
                     <div class="col-md-6"> 
                         
-                        <?php echo $form->field($employeedata, 'email')->textInput(['autofocus' => true,'type'=>'email']) ?>
+                        <?php echo $form->field($employeedata, 'email')->textInput(['autofocus' => true,'type'=>'email','value'=>'']) ?>
                     </div>
                     <div class="col-md-6">
                         <?php echo $form->field($employeedata, 'phone')->textInput(['autofocus' => true])?>
                     </div>
                 </div>
                 
-                <div class="row mt-2">
+                <div class="row mt-2"> 
                     <div class="col-md-12">
                        <?php echo $form->field($employeedata, 'address')->textarea(['rows' => 4]) ?>
                     </div>

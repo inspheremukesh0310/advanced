@@ -7,6 +7,7 @@ use frontend\models\Stateslist;
 use yii\web\UploadedFile;
 use yii\helpers\Url;
 use frontend\components\EmployeeModuleBehavior;
+use frontend\models\StatesDistricList;
 
 use Yii;
 
@@ -157,6 +158,19 @@ class EmployeeController extends \yii\web\Controller
             }
         }
         return $this->render('empadd', ['model' => $model,'stateslist'=> $stetes]);
+    }
+
+    public function actionDistriclist($id){
+       $countdistric=StatesDistricList::find()->where(['parent_id'=>$id])->count();
+        if ($countdistric > 0) {
+            $districs=StatesDistricList::find()->where(['parent_id'=>$id])->all();
+            foreach ($districs as $distric) {
+                echo "<option value='".$distric->id."'>".$distric->distric_name."</option>";
+            }
+        }else {
+            echo "<option></option>";
+        }
+
     }
 
 }

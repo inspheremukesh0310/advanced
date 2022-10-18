@@ -8,7 +8,7 @@
         public $username;
         public $userid;
         public function events(){
-           echo $this->username."[".$this->userid."]";
+          // echo $this->username."[".$this->userid."]";
             return [
 
             ];

@@ -17,6 +17,7 @@ use Yii;
  * @property string $empimg
  * @property string $address
  * @property int $state
+ * @property int $distric
  * @property int $status
  */
 class Employees extends \yii\db\ActiveRecord
@@ -35,9 +36,9 @@ class Employees extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'email', 'phone', 'gender', 'maritalstatus', 'dob', 'empimg', 'address', 'state'], 'required'],
+            [['name', 'email', 'phone', 'gender', 'maritalstatus', 'dob', 'address', 'state', 'distric'], 'required'],
             [['phone'], 'number'],
-            [['gender', 'maritalstatus', 'state', 'status'], 'integer'],
+            [['gender', 'maritalstatus', 'state', 'distric', 'status'], 'integer'],
             [['dob'], 'safe'],
             [['address'], 'string'],
             [['name', 'email'], 'string', 'max' => 50],
@@ -61,6 +62,7 @@ class Employees extends \yii\db\ActiveRecord
             'empimg' => 'Empimg',
             'address' => 'Address',
             'state' => 'State',
+            'distric' => 'Distric',
             'status' => 'Status',
         ];
     }
